@@ -1,0 +1,6 @@
+//seleciona o banco de dados
+use("sysexp");
+
+//db.estoque.find({},{produto:1,quantidade:1}).sort({destino:1});
+
+db.estoque.find({quantidade:{$gt:5}});
