@@ -1,0 +1,28 @@
+use("sample_mflix");
+
+/*
+db.movies.find({
+            year:{$ne:"è"}
+        })
+        .sort({year:-1})
+        .limit(2);
+*/
+
+//db.movies.find({   year: "2014è"    }).count();
+
+//db.movies.find({   countries: "2014è"    });
+
+/*
+db.movies.updateMany(
+    {
+        year: "2014è"
+    },
+    {
+        $set:{year:2014}
+    }
+)
+*/
+
+db.movies.find({
+    genres: {$all: ["Crime","Drama"]}
+}).count();
