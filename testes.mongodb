@@ -1,4 +1,4 @@
-use("sample_mflix");
+//use("sample_mflix");
 
 /*
 db.movies.find({
@@ -23,6 +23,27 @@ db.movies.updateMany(
 )
 */
 
-db.movies.find({
+/*db.movies.find({
     genres: {$all: ["Crime","Drama"]}
-}).count();
+}).count();*/
+
+//usando o db
+use("sysexp");
+
+// procurando por campo no db
+db.estoque.find({ quantidade: {$gt:5} });
+
+// contando registros
+db.estoque.find({ }).count();
+
+// inserindo registro
+db.estoque.insertOne({nome:"ABC",idade:"123",peso:70})
+
+// buscando tudo
+db.estoque.find({});
+
+// buscandi por id
+db.estoque.find({ _id: ObjectId("6414f5dacfa5bf8086f18da6")});
+
+// deletando 1, por id
+db.estoque.deleteOne({_id: ObjectId("6414f5dacfa5bf8086f18da6")});
