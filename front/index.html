@@ -8,6 +8,7 @@
     
     <link href="css/bootstrap.css" rel="stylesheet" />
     <script src="js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script src="js/estoque.js"></script>
 
 
@@ -51,13 +52,10 @@
                   <h1 class="h2">Dashboard</h1>
                   <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                      <button id="btn-carregar" type="button" class="btn btn-sm btn-outline-secondary">Carregar</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                      <button id="btn-carregar" type="button" class="btn btn-sm btn-outline-secondary" title="Exportar Lista de Produtos">Carregar</button>
+                       <a href="http://localhost:3000/estoque-csv" id="btn-exportar" type="button" class="btn btn-sm btn-outline-secondary" title="Exportar Lista de Produtos">Exportar</a>
                     </div>
-                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar align-text-bottom" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                      This week
-                    </button>
+                    
                   </div>
                 </div>
           
@@ -71,6 +69,7 @@
                         <th scope="col">Produto</th>
                         <th scope="col">Quantidade</th>
                         <th scope="col">Destino</th>
+                        <th scope="col">Ações</th>
                       </tr>
                     </thead>
                     <tbody id="listagem">

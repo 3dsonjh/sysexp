@@ -47,31 +47,31 @@
               </nav>
               <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <h2>Cadastro de Entrada de Mercadoria</h2>
-                <form>
+                <form action="http://localhost:3000/estoque-add" method="POST">
                     <div class="mb-3">
                         <label>Num da Nota Fiscal</label>
-                        <input type="text" class="form-control">
+                        <input name="nota" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label>Destino</label>
-                        <select class="form-select">
+                        <select class="form-select" name="destino">
                             <option>Sala A</option>
                             <option>Sala B</option>
                             <option>Sala C</option>
                             <option>Sala D</option>
                             <option>Sala E</option>
                             <option>Sala F</option>
-                            <option>Sala D</option>
+                            <option>Sala G</option>
                         </select>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-9">
                             <label>Produto</label>
-                            <input type="text" class="form-control">
+                            <input name="produto" type="text" class="form-control">
                         </div>
                         <div class="mb-3 col-3">
                             <label>Quantidade</label>
-                            <input type="text" class="form-control">
+                            <input name="quantidade" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="mb-3">

@@ -4,12 +4,14 @@ const port = 3000
 const csv = require('node-csv').createParser();
 
 var cors = require('cors')
-
 app.use(cors())
 
+app.use(express.json());
+app.use(express.urlencoded({extension:true}));
 
 //Conectando no MongoDB
 const mongodb = require('mongodb');
+const { json } = require('express');
 
 const url_mongo = "mongodb+srv://3dsonjh:saidai@cluster0.zdu5eur.mongodb.net/?retryWrites=true&w=majority";
 
@@ -40,6 +42,40 @@ app.get('/estoque', async function(req,res){ // Função Assíncrona
     
     const resultado = await estoque.find({}).toArray(); // await
     res.json(resultado);
+});
+
+
+// Exportando um CSV
+app.get('/estoque-csv', async function(req,res){
+    const resultado = await estoque.find({}).toArray(); // await
+    //res.json(resultado);
+
+    let arquivoCSV = "id,nota,destino,produto,quantidade\n";
+
+    resultado.forEach(function(item){
+        arquivoCSV += item._id+","+item.nota+","+item.destino+","+item.produto+","+item.quantidade+"\n";
+    });
+    
+    res.append("content-type","text/csv");
+    res.send(arquivoCSV);
+});
+
+// Adicionando Registros no Banco
+app.post('/estoque-add', async function(req,res){
+    const resultado = await estoque.insertOne(req.body)
+    //res.json(req.body); // imprime variaveis
+    //res.json(resultado); // imprime resultado
+    const origem = req.get('Referer');
+    res.redirect(origem);
+});
+
+// Apagando do banco
+app.get('/estoque-del/:id',async function(req,res){
+    const id = new ObjectId(req.params.id);
+    const resultado = await estoque.deleteOne({_id: id});
+    //res.json(resultado); 
+    const origem = req.get('Referer');
+    res.redirect(origem);
 });
 
 
