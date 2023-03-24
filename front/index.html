@@ -6,9 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SysExp</title>
     
+    
     <link href="css/bootstrap.css" rel="stylesheet" />
-    <script src="js/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    
     <script src="js/estoque.js"></script>
 
 
@@ -52,7 +57,7 @@
                   <h1 class="h2">Dashboard</h1>
                   <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                      <button id="btn-carregar" type="button" class="btn btn-sm btn-outline-secondary" title="Exportar Lista de Produtos">Carregar</button>
+                      <button id="btn-carregar" type="button" class="btn btn-sm btn-outline-secondary" title="Exportar Lista de Produtos" data-bs-toggle="modal" data-bs-target="#modal-editar">Editar Produtos</button>
                        <a href="http://localhost:3000/estoque-csv" id="btn-exportar" type="button" class="btn btn-sm btn-outline-secondary" title="Exportar Lista de Produtos">Exportar</a>
                     </div>
                     
@@ -80,5 +85,60 @@
               </main>
         </div>
       </div>
+ 
+    
+    
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form method="POST">
+              <div class="mb-3">
+                  <label>Num da Nota Fiscal</label>
+                  <input name="nota" id="nota" type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                  <label>Destino</label>
+                  <select class="form-select" name="destino" id="destino">
+                      <option>Sala A</option>
+                      <option>Sala B</option>
+                      <option>Sala C</option>
+                      <option>Sala D</option>
+                      <option>Sala E</option>
+                      <option>Sala F</option>
+                      <option>Sala G</option>
+                  </select>
+              </div>
+              <div class="row">
+                  <div class="mb-3 col-9">
+                      <label>Produto</label>
+                      <input name="produto" id="produto" type="text" class="form-control">
+                  </div>
+                  <div class="mb-3 col-3">
+                      <label>Quantidade</label>
+                      <input name="quantidade" id="quantidade" type="text" class="form-control">
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <label>Foto da Embalagem</label>
+                  <input type="file" class="form-control" />
+              </div>
+              <button class="btn btn-primary">Cadastrar</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary">Salvar Alterações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Fim Modal -->
 </body>
 </html>
