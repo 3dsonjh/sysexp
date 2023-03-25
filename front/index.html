@@ -57,7 +57,7 @@
                   <h1 class="h2">Dashboard</h1>
                   <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                      <button id="btn-carregar" type="button" class="btn btn-sm btn-outline-secondary" title="Exportar Lista de Produtos" data-bs-toggle="modal" data-bs-target="#modal-editar">Editar Produtos</button>
+                      <!--<button id="btn-carregar" type="button" class="btn btn-sm btn-outline-secondary" title="Exportar Lista de Produtos" data-bs-toggle="modal" data-bs-target="#modal-editar">Editar Produtos</button>-->
                        <a href="http://localhost:3000/estoque-csv" id="btn-exportar" type="button" class="btn btn-sm btn-outline-secondary" title="Exportar Lista de Produtos">Exportar</a>
                     </div>
                     
@@ -94,11 +94,14 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel">Editar Produto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
           </div>
           <div class="modal-body">
-            <form method="POST">
+            <form method="POST" id="form-editar" action="http://localhost:3000/estoque-up">
+
+              <input type="hidden" id="codigo" name="codigo"  />
+
               <div class="mb-3">
                   <label>Num da Nota Fiscal</label>
                   <input name="nota" id="nota" type="text" class="form-control">
@@ -134,7 +137,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Salvar Alterações</button>
+            <button id="btn-salvar" type="button" class="btn btn-primary">Salvar Alterações</button>
           </div>
         </div>
       </div>

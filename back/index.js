@@ -13,7 +13,7 @@ app.use(express.urlencoded({extension:true}));
 const mongodb = require('mongodb');
 const { json } = require('express');
 
-const url_mongo = "mongodb+srv://3dsonjh:saidai@cluster0.zdu5eur.mongodb.net/?retryWrites=true&w=majority";
+const url_mongo = "mongodb+srv://3dsonjh:abc12345678@cluster0.zdu5eur.mongodb.net/?retryWrites=true&w=majority";
 
 // criando variável da conexão
 const conexao = new mongodb.MongoClient(url_mongo);
@@ -65,6 +65,23 @@ app.post('/estoque-add', async function(req,res){
     const resultado = await estoque.insertOne(req.body)
     //res.json(req.body); // imprime variaveis
     //res.json(resultado); // imprime resultado
+    const origem = req.get('Referer');
+    res.redirect(origem);
+});
+
+// Alterando Registros no Banco
+app.post("/estoque-up", async function(req,res){
+    //res.json(req.body);
+    const codigo = new ObjectId(req.body.codigo);
+    const dados={
+        $set : {
+            nota:       req.body.nota,
+            produto:    req.body.produto,
+            quantidade: req.body.quantidade,
+            destino:    req.body.destino
+        }
+    };
+    const resultado = await estoque.updateOne({_id: codigo}, dados);
     const origem = req.get('Referer');
     res.redirect(origem);
 });
