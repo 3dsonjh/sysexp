@@ -31,19 +31,41 @@ db.movies.updateMany(
 use("sysexp");
 
 // procurando por campo no db
-db.estoque.find({ quantidade: {$gt:5} });
+//db.estoque.find({ quantidade: {$gt:5} });
 
 // contando registros
-db.estoque.find({ }).count();
+//db.estoque.find({ }).count();
 
 // inserindo registro
-db.estoque.insertOne({nome:"ABC",idade:"123",peso:70})
+//db.estoque.insertOne({nome:"ABC",idade:"123",peso:70})
 
 // buscando tudo
-db.estoque.find({});
+//db.estoque.find({});
 
 // buscandi por id
-db.estoque.find({ _id: ObjectId("6414f5dacfa5bf8086f18da6")});
+//db.estoque.find({ _id: ObjectId("6414f5dacfa5bf8086f18da6")});
 
 // deletando 1, por id
-db.estoque.deleteOne({_id: ObjectId("6414f5dacfa5bf8086f18da6")});
+//db.estoque.deleteOne({_id: ObjectId("6414f5dacfa5bf8086f18da6")});
+
+// criando uma collection
+//db.createCollection("usuarios");
+
+// cadastrando usuarios
+/*db.usuarios.insertOne({
+    _id: "joao@hotmail.com",
+    senha: "1234",
+    nome: "Joao",
+    ultimo_login : null
+});*/
+
+
+db.usuarios.find({});
+
+
+/*db.usuarios.findOneAndUpdate({
+    _id: "edir@prof.com",
+    senha: "127110eda4d09e062aa5e4a390b0a572ac0d2c022034"
+},{
+    $currentDate: { ultimo_login: true}
+});*/

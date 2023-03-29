@@ -3,6 +3,12 @@ const app = express()
 const port = 3000
 const csv = require('node-csv').createParser();
 
+const sha1 = require('sha1');
+
+
+const multer = require('multer');
+const upload = multer({ dest: 'fotos/' })
+
 var cors = require('cors')
 app.use(cors())
 
@@ -61,7 +67,10 @@ app.get('/estoque-csv', async function(req,res){
 });
 
 // Adicionando Registros no Banco
-app.post('/estoque-add', async function(req,res){
+app.post('/estoque-add', upload.single('fotos') ,async function(req,res){
+
+    res.json(req.file);
+
     const resultado = await estoque.insertOne(req.body)
     //res.json(req.body); // imprime variaveis
     //res.json(resultado); // imprime resultado
@@ -104,16 +113,42 @@ app.get('/estoque/:id', async function(req,res){
 });
 
 
-app.post('/login',function(req,res){
+app.post('/login', async function(req,res){
 
     var usuario = req.body.email;
     var senha = req.body.senha;
 
-    if (usuario=='edir' && senha=='123'){
+    var hash = sha1(senha);
+
+    //res.send(hash);
+
+    const usuarios = conexao.db("sysexp").collection("usuarios");
+
+    var logado = await usuarios.findOneAndUpdate(
+    {
+        _id: usuario,
+        senha: hash 
+    }
+    ,{
+        $currentDate : {ultimo_login:true}
+    });
+
+    //res.json(logado);
+
+    if (logado.value != null) { 
+        res.send({ status: "ok"}); 
+    }
+    else {
+        res.send({ status: "erro", "mensagem": "usuario ou senha não encontrados"}); 
+    }
+    
+
+    /*if (usuario=='edir' && senha=='123'){
         res.send({status:"ok"});
     } else {
         res.send({status:"erro","mensagem":"Usuário ou senha não encontrados"});
-    }
+    }*/
+
 });
 
 

@@ -1,12 +1,13 @@
 $(document).ready(function(){
 
-
+    // Trava se o usuario nao estiver logado
     var usuario = sessionStorage.getItem('usuario');
     //console.log(usuario);
     if(usuario==null){ 
         location.href="login.html";
     }
 
+    // Atualiza data hora
     function exibeData(){
 
         console.log("altera data");
@@ -21,4 +22,14 @@ $(document).ready(function(){
     
     }
     setInterval(exibeData,500);
+
+    // Botao logout
+    $("#btn-logout").click(function(){
+        sessionStorage.setItem("logado","erro");
+        sessionStorage.clear();
+        location.href="login.html";
+    });
+
 });
+
+
